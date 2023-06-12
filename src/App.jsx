@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import PhotoContext from './context/PhotoContext';
 import PhotoList from './components/PhotoList';
 import FavoritesPage from './components/FavoritesPage';
+import './index.css';
 
 function App() {
   const CLIENT_SECRET = `h-wHyPBeHzum1NAUJ2Ce8IEIQX_0IrJ-aGKBOmrLAfQ`;
@@ -74,22 +75,24 @@ function App() {
         removeFromFavorites,
       }}
     >
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/favorites">Favorites</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route exact path="/" component={PhotoList} />
-          <Route exact path="/favorites" component={FavoritesPage} />
-        </Switch>
-      </div>
+      <BrowserRouter>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/favorites">Favorites</Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route exact path="/" component={PhotoList} />
+            <Route exact path="/favorites" component={FavoritesPage} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     </PhotoContext.Provider>
   );
 }
